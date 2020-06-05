@@ -1,4 +1,4 @@
-package com.patand.cinema;
+package com.patand.Cinema;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;

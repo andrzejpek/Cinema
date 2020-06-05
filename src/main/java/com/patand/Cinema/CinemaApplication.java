@@ -1,4 +1,4 @@
-package com.patand.cinema;
+package com.patand.Cinema;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
