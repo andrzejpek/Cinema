@@ -1,0 +1,51 @@
+<!doctype html>
+<html lang="pl" xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<link rel="stylesheet" th:href="@{/css/style.css}" href="../static/css/style.css" type="text/css">
+
+<head>
+    <meta charset="utf-8">
+    <title>Kino</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://fonts.googleapis.com/css?family=Saira+Condensed:400,700|Saira:300,400&amp;subset=latin-ext" rel="stylesheet">
+
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.12/css/all.css" integrity="sha384-G0fIWCsCzJIMAVNQPfjH08cyYaUtMwjJwqiRKxxE/rx96Uroj1BtIQ6MLJuheaO9" crossorigin="anonymous">
+
+
+
+</head>
+
+<body>
+
+<header>
+
+    <hgroup class="welcome">
+        <h1>KINO</h1>
+    </hgroup>
+
+    <button class="button1" sec:authorize="isAnonymous()"><a th:href="@{/login}">Zaloguj sie</a></button>
+    <button class="button1" sec:authorize="isAuthenticated()"><a th:href="@{/reservation/addReservation}">Zarezerwuj usluge</a></button>
+    <aside class="active">
+        <nav>Menu</nav>
+        <ul>
+            <li sec:authorize="isAuthenticated()">
+                <a th:href="@{/logout}">Sing out</a>
+            </li>
+            <li>
+                <a href="#cos">
+                    Costam
+                </a>
+            </li>
+        </ul>
+    </aside>
+</header>
+
+<section id="cos" class="contact">
+    <h1>cos</h1>
+
+
+
+</section>
+</body>
+
+</html>
