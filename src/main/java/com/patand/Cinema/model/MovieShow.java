@@ -28,5 +28,8 @@ public class MovieShow {
     @DateTimeFormat(pattern = "MM/dd/yyyy h:mm a")
     private LocalDateTime dateTime;
 
+    @ManyToOne
+    @JoinColumn(name = "movie_id", nullable = false)
+    private Movie movie;
 
 }
