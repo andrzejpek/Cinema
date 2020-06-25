@@ -67,11 +67,11 @@ public class ReservationController {
         return "reservation/editReservationForm";
     }
 
-//    @PostMapping(value = "/editReservation/{id}")
-//    public String editReservation(@ModelAttribute Reservation reservation){
-//        reservationService.update(reservation);
-//        return "redirect:/reservation/userReservation";
-//    }
+    @PostMapping(value = "/editReservation/{id}")
+    public String editReservation(@ModelAttribute Reservation reservation){
+        reservationService.update(reservation);
+        return "redirect:/reservation/userReservation";
+    }
 
 
     private User getUser(Principal principal) {

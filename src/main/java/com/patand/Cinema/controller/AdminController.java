@@ -40,7 +40,7 @@ public class AdminController {
     @GetMapping(value = "/addMovie")
     public String showAddCategoryForm(Model model){
         model.addAttribute("category", new Movie());
-        return "admin/addcategory";
+        return "admin/addMovie";
     }
 
     @GetMapping(value = "/addMovieShow")

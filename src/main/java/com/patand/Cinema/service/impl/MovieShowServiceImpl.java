@@ -32,6 +32,6 @@ public class MovieShowServiceImpl implements IMovieShowService {
 
     @Override
     public List<MovieShow> findAllByMovieId(Long movieId) {
-        return movieShowRepository.findAllByCategoryId(movieId);
+        return movieShowRepository.findAllByMovieId(movieId);
     }
 }

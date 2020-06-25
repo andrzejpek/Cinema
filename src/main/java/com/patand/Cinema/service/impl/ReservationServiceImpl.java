@@ -43,15 +43,15 @@ public class ReservationServiceImpl implements IReservationService {
     public Reservation findById(Long id) {
         return reservationRepository.findById(id).orElse(null);
     }
-//    @Override
-//    public void update(Reservation reservation) {
-//        reservationRepository.findById(reservation.getId()).ifPresent(reservation1 -> {
-//            reservation1.(reservation);
-//            reservation1.setDateTime(reservation.getDateTime());
-//            reservation1.setStatus(false);
-//            reservationRepository.save(reservation1);
-//        });
-//    }
+    @Override
+    public void update(Reservation reservation) {
+        reservationRepository.findById(reservation.getId()).ifPresent(reservation1 -> {
+            reservation1.setMovieShow(reservation.getMovieShow());
+            reservation1.getMovieShow().setDateTime(reservation.getMovieShow().getDateTime());
+            reservation1.setStatus(false);
+            reservationRepository.save(reservation1);
+        });
+    }
 
     @Override
     public List<Reservation> showAllReservationWithStatusFalse() {

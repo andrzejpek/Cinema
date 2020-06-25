@@ -31,9 +31,40 @@
             <li sec:authorize="isAuthenticated()">
                 <a th:href="@{/logout}">Sing out</a>
             </li>
+            <li sec:authorize="isAuthenticated()">
+                <a th:href="@{/update/{id} (id = ${user.id})}">Update</a>
+            </li>
+            <li sec:authorize="isAuthenticated()">
+                <a th:href="@{/reservation/userReservation}">My Reservation</a>
+            </li>
             <li>
-                <a href="#cos">
-                    Costam
+                <a href="#onas">
+                    O nas
+                </a>
+            </li>
+            <li>
+                <a href="#uslugi">
+                    Usługi
+                </a>
+            </li>
+            <li>
+                <a href="#promocja">
+                    Promocyjne dni
+                </a>
+            </li>
+            <li>
+                <a href="#cenniki">
+                    Cennik
+                </a>
+            </li>
+            <li>
+                <a href="#galeria">
+                    Galeria
+                </a>
+            </li>
+            <li>
+                <a href="#con">
+                    Kontakt
                 </a>
             </li>
         </ul>
