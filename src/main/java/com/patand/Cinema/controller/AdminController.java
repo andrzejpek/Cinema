@@ -38,16 +38,16 @@ public class AdminController {
     }
 
     @GetMapping(value = "/addMovie")
-    public String showAddCategoryForm(Model model){
-        model.addAttribute("category", new Movie());
+    public String showAddMovieForm(Model model){
+        model.addAttribute("movie", new Movie());
         return "admin/addMovie";
     }
 
     @GetMapping(value = "/addMovieShow")
-    public String showAddSubcategoryForm(Model model){
+    public String showAddMovieShowForm(Model model){
         List<Movie> categories = movieService.findAll();
         model.addAttribute("categories", categories);
-        model.addAttribute("subcategory", new MovieShow());
+        model.addAttribute("movieShow", new MovieShow());
         return "addMovieShow";
     }
 

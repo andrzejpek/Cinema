@@ -3,9 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <link href="https://fonts.googleapis.com/css2?family=Fira+Sans:wght@500&display=swap" rel="stylesheet">
     <title>upadateForm</title>
-    <link rel="stylesheet" th:href="@{/css/StyleUpdateForm.css}" href="/static/css/StyleUpdateForm.css" type="text/css">
 </head>
 <body>
 <main>
@@ -32,9 +30,6 @@
                             <input type="email" name="email" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$" placeholder="Email" required autofocus th:field="*{email}" >
 
 
-                            <input type="text" name="phone" pattern='(\+48)\d{9}' maxlength="12" placeholder="Telefon" required autofocus
-                                   th:field="*{phoneNumber}" >
-
                             <button type="submit" value="Zmień">Zatwierdź zmianę danych</button>
                             <a id="przycisk" onclick="goBack()">Powrot do strony glownej</a>
                         </div>
@@ -42,7 +37,7 @@
                 </div>
             </div>
 
-            <footer> Project designers Vlad, Andrzej, Dawid &copy;</footer>
+            <footer> Project designers Andrzej, Patryk &copy;</footer>
         </div>
     </section>
 </main>

@@ -18,31 +18,20 @@
 <header>
 
     <hgroup class="welcome">
-        <h1>Salon Kosmetyczny "Nowa WySpa"</h1>
-        <h2><span>Wasze piękno jest</span> naszą pasją</h2>
         <h3>Rezerwacja online</h3>
 
     </hgroup>
 </header>
 
 <form th:action="@{/reservation/addReservation}" method="post" th:object="${reservation}">
-    <label>Wybierz usluge</label><br>
-    <select class="select"  th:field="*{subCategory}" required>
-        <optgroup th:each="category : ${categoryList}" th:label="${category.name}">
-            <option th:each="subcategory : ${category.subCategoryList}" th:value="${subcategory.id}" th:text="${subcategory.name}"></option>
+    <label>Wybierz seans</label><br>
+    <select class="select"  th:field="*{movieShow}" required>
+        <optgroup th:each="movie : ${movieList}" th:label="${movie.name}">
+            <option th:each="movieShow : ${movie.movieShowList}" th:value="${movieShow.id}" th:text="${movieShow.name}" th:text="${movieShow.pattern} "></option>
         </optgroup>
     </select><br>
-    <label>Wybierz date i czas</label><br>
-    <div class="container">
-                <div class="form-group">
-                    <div class='input-group date' id='datetimepicker1'>
-                        <input type='text' th:field="*{dateTime}" required class="form-control" />
-                        <span class="input-group-addon">
-            <span class="glyphicon glyphicon-calendar"></span>
-          </span>
-                    </div>
-                </div>
-    </div><br>
+    <br>
+
     <div>
         <button class="reg" type="submit" value="Rezerwacja">Rezerwacja</button>
     </div><br>

@@ -32,7 +32,7 @@ public class ReservationController {
     public String showReservationForm( Model model){
         List<MovieShow> categories = movieShowService.findAll();
         model.addAttribute("reservation", new Reservation());
-        model.addAttribute("categoryList", categories);
+        model.addAttribute("movieList", categories);
         return "reservation/reservationForm";
     }
 
@@ -62,7 +62,7 @@ public class ReservationController {
     public String showEditReservationForm(@PathVariable("id") Long reservationId, Model model){
         Reservation reservation = reservationService.findById(reservationId);
         List<MovieShow> categories = movieShowService.findAll();
-        model.addAttribute("categoryList", categories);
+        model.addAttribute("movieList", categories);
         model.addAttribute("editReservation", reservation);
         return "reservation/editReservationForm";
     }

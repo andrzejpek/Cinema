@@ -3,8 +3,6 @@
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
-    <link rel="stylesheet" type="text/css" href="/static/css/styleNavbar.css" th:href="@{/css/styleNavbar.css}">
-    <link rel="stylesheet" type="text/css" href="/static/css/styleReservationListForm.css" th:href="@{/css/styleReservationListForm.css}">
 </head>
 <body>
 <th:block th:replace="fragments/navbar :: nav"/>
@@ -22,7 +20,7 @@
         <tr>
             <td th:text="${reservation.user.name}"></td>
             <td th:text="${reservation.user.surname}"></td>
-            <td th:text="${reservation.subCategory.name}"></td>
+            <td th:text="${reservation.movieShow.name}"></td>
             <td th:text="${#temporals.format(reservation.dateTime, 'MM-dd-yyyy h:mm a')}"></td>
             <td><a class="accept" th:href="@{reservation/{reservationId} (reservationId = ${reservation.id})}">Accept</a></td>
         </tr>
