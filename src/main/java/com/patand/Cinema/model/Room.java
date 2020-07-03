@@ -18,9 +18,4 @@ public class Room {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
-    @Column
-    private int government;
-
-    @Column
-    private int place;
 }

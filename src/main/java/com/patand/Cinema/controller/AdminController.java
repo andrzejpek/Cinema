@@ -34,13 +34,13 @@ public class AdminController {
     public String showAdminPanel(Model model){
         List<Movie> categories = movieService.findAll();
         model.addAttribute("categories", categories);
-        return "admin/homePage";
+        return "homePage";
     }
 
     @GetMapping(value = "/addMovie")
     public String showAddMovieForm(Model model){
         model.addAttribute("movie", new Movie());
-        return "admin/addMovie";
+        return "addMovie";
     }
 
     @GetMapping(value = "/addMovieShow")
@@ -52,13 +52,13 @@ public class AdminController {
     }
 
     @PostMapping(value = "/addMovie")
-    public String addCategory(@ModelAttribute Movie movie){
+    public String addMovie(@ModelAttribute Movie movie){
         movieService.add(movie);
         return "redirect:/admin/main";
     }
 
     @PostMapping(value = "/addMovieShow")
-    public String addSubCategory(@ModelAttribute MovieShow movieShow){
+    public String addMovieShow(@ModelAttribute MovieShow movieShow){
         iMovieShowService.add(movieShow);
         return "redirect:/admin/main";
     }
@@ -66,7 +66,7 @@ public class AdminController {
     @GetMapping(value = "/reservation")
     public String showReservation(Model model){
         model.addAttribute("reservations", iReservationService.showAllReservationWithStatusFalse());
-        return "admin/reservationListForm";
+        return "reservationListForm";
     }
 
 

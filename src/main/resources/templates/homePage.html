@@ -7,14 +7,12 @@
 </head>
 
 <body>
-<th:block th:replace="fragments/navbar :: nav"/>
+<th:block th:replace="navbar :: nav"/>
 <div th:action="@{main}" th:object="${categories}">
     <section>
         <div class="movie" th:each="movie : ${categories}">
-            <h2 th:text="${movie.name}"></h2>
-            <div class="movieShow" th:each="movieShow : ${movie.movieShowList}">
-                <p th:text="${movieShow.name} + ' - ' + ${movieShow.price} + zł"></p>
-            </div>
+            <h2 th:text="${movie.title}"></h2>
+
         </div>
     </section>
 </div>

@@ -1,10 +1,25 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
 <head>
     <meta charset="UTF-8">
     <title>MovieShow</title>
 </head>
 <body>
+<th:block th:replace="fragments/navbar :: nav"/>
+<form th:action="@{/addMovieShow}" method="post" th:object="${movieshow}">
+    <label>Write name subCategory</label><br>
+    <input type="text" th:field="*{name}" required maxlength="40"><br>
+    <label>Write price</label><br>
+    <label>Enter category</label><br>
+    <select th:field="*{movie}" required>
+        <option value=""> --</option>
+        <option th:each="movie : ${categories}"
+                th:value="${movie.id}"
+                th:text="${category.name}"></option>
+    </select><br>
+    <button class="addsub" type="submit" value="Add">Add</button>
+    <a class="home" th:href="@{main}">Back home</a>
+</form>
 
 </body>
 </html>
