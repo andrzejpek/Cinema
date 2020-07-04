@@ -5,19 +5,20 @@
     <title>MovieShow</title>
 </head>
 <body>
-<th:block th:replace="fragments/navbar :: nav"/>
-<form th:action="@{/addMovieShow}" method="post" th:object="${movieshow}">
+<th:block th:replace="navbar :: nav"/>
+<form th:action="@{/admin/addMovieShow}" method="post" th:object="${movieshow}">
     <label>Write name subCategory</label><br>
-    <input type="text" th:field="*{name}" required maxlength="40"><br>
     <label>Write price</label><br>
     <label>Enter category</label><br>
-    <select th:field="*{movie}" required>
+    <select th:field="*{movie}">
         <option value=""> --</option>
-        <option th:each="movie : ${categories}"
+        <option th:each="movie : ${movie}"
                 th:value="${movie.id}"
-                th:text="${category.name}"></option>
+                th:text="${movie.title}"
+                th:text = "${movie.description}"></option>
     </select><br>
-    <button class="addsub" type="submit" value="Add">Add</button>
+
+    <button type="submit" value="Add">Add</button>
     <a class="home" th:href="@{main}">Back home</a>
 </form>
 

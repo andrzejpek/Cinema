@@ -5,6 +5,7 @@ import lombok.RequiredArgsConstructor;
 import lombok.Setter;
 
 import javax.persistence.*;
+import java.util.List;
 
 @Entity
 @Getter
@@ -23,8 +24,8 @@ public class Movie {
     @Column
     private String description;
 
-    @Column
-    private int time;
+    @OneToMany(mappedBy = "movie")
+    private List<MovieShow> movieShowList;
 
 
 }

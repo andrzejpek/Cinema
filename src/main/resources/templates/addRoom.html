@@ -1,17 +1,17 @@
 <!DOCTYPE html>
-<html lang="pl" xmlns:th="http://www.thymeleaf.org">
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
 </head>
 <body>
 <th:block th:replace="navbar :: nav"/>
-<form th:action="@{/admin/addMovie}" method="post" th:object="${movie}">
+<form th:action="@{/admin/addRoom}" method="post" th:object="${room}">
     <label>Enter movie</label><br>
-    <input type="text" th:field="*{title}" required maxlength="40"><br>
-    <input type="text" th:field="*{description}" required maxlength="120"><br>
+    <input type="text" th:field="*{name}" required maxlength="40"><br>
     <button type="submit" value="Add">Add</button>
     <a class="home" th:href="@{main}">Back home</a>
 </form>
+
 </body>
 </html>

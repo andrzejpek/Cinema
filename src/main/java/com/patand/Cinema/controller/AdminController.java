@@ -2,9 +2,11 @@ package com.patand.Cinema.controller;
 
 import com.patand.Cinema.model.Movie;
 import com.patand.Cinema.model.MovieShow;
+import com.patand.Cinema.model.Room;
 import com.patand.Cinema.service.IMovieService;
 import com.patand.Cinema.service.IMovieShowService;
 import com.patand.Cinema.service.IReservationService;
+import com.patand.Cinema.service.IRoomService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
@@ -29,6 +31,9 @@ public class AdminController {
     @Autowired
     private IReservationService iReservationService;
 
+    @Autowired
+    private IRoomService roomService;
+
     @PreAuthorize("isAuthenticated() and hasAuthority('ROLE_ADMIN')")
     @GetMapping(value = "/main")
     public String showAdminPanel(Model model){
@@ -45,14 +50,26 @@ public class AdminController {
 
     @GetMapping(value = "/addMovieShow")
     public String showAddMovieShowForm(Model model){
-        List<Movie> categories = movieService.findAll();
-        model.addAttribute("categories", categories);
+        List<Movie> movie = movieService.findAll();
+        model.addAttribute("movie", movie);
         model.addAttribute("movieShow", new MovieShow());
         return "addMovieShow";
     }
+    @GetMapping(value = "/addRoom")
+    public String showAddRoom(Model model){
+        model.addAttribute("room",new Room());
+        return "addRoom";
+    }
+
+    @PostMapping(value = "/addRoom")
+    public String addRoom(@ModelAttribute Room room){
+        roomService.add(room);
+        return "redirect:/admin/addRoom";
+    }
+
 
     @PostMapping(value = "/addMovie")
-    public String addMovie(@ModelAttribute Movie movie){
+    public String addCategory(@ModelAttribute Movie movie){
         movieService.add(movie);
         return "redirect:/admin/main";
     }
