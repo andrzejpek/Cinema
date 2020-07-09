@@ -21,7 +21,7 @@ public class ReservationServiceImpl implements IReservationService {
 
     @Override
     public void save(Reservation reservation, User user) {
-        reservation.setStatus(false);
+        reservation.setStatus(true);
         reservation.setUser(user);
         reservationRepository.save(reservation);
     }

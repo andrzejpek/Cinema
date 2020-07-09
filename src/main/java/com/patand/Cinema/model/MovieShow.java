@@ -21,6 +21,10 @@ public class MovieShow {
     private Long id;
 
     @ManyToOne
+    @JoinColumn(name = "movie_id", nullable = false)
+    private Movie movie;
+
+    @ManyToOne
     @JoinColumn(name = "room_id", nullable = false)
     private Room room;
 
@@ -28,8 +32,6 @@ public class MovieShow {
     @DateTimeFormat(pattern = "MM/dd/yyyy h:mm a")
     private LocalDateTime dateTime;
 
-    @ManyToOne
-    @JoinColumn(name = "movie_id", nullable = false)
-    private Movie movie;
+
 
 }

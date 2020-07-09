@@ -1,22 +1,29 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<html lang="pl" xmlns:th="http://www.thymeleaf.org">
 <head>
-    <meta charset="UTF-8">
-    <title>MovieShow</title>
+	<meta charset="UTF-8">
+	<title>Title</title>
+
+	<link th:rel="stylesheet" th:href="@{/webjars/bootstrap/3.3.7-1/css/bootstrap.min.css} "/>
 </head>
 <body>
 <th:block th:replace="navbar :: nav"/>
-<form th:action="@{/admin/addMovieShow}" method="post" th:object="${movieshow}">
-    <label>Write name subCategory</label><br>
-    <label>Write price</label><br>
-    <label>Enter category</label><br>
-    <select th:field="*{movie}">
+<form th:action="@{/admin/addMovieShow}" method="post" th:object="${movieShowRequest}">
+    <select th:field="*{movieId}">
         <option value=""> --</option>
-        <option th:each="movie : ${movie}"
+        <option th:each="movie : ${movies}"
                 th:value="${movie.id}"
-                th:text="${movie.title}"
-                th:text = "${movie.description}"></option>
+                th:text="${movie.title}"></option>
     </select><br>
+    <select th:field="*{roomId}">
+        <option value=""> --</option>
+        <option th:each="room : ${rooms}"
+                th:value="${room.id}"
+                th:text="${room.name}"></option>
+    </select><br>
+
+	<label>Wybierz date i czas</label>
+	<input type='datetime-local' th:field="*{showDateTime}" value="2020-06-12T19:30" /><br>
 
     <button type="submit" value="Add">Add</button>
     <a class="home" th:href="@{main}">Back home</a>

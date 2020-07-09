@@ -21,25 +21,16 @@
     <table class="content-table" >
         <thead>
         <tr>
-            <th>Nazwa usługi</th>
+            <th>Tytuł </th>
             <th>Data i godzina rezerwacji</th>
             <th colspan="2"></th>
-
         </tr>
         </thead>
         <tbody th:each="userReservation : ${userReservations}">
 
-
         <tr>
-            <td th:text="${userReservation.subCategory.name}"></td>
-            <td th:text="${userReservation.dateTime}"></td>
-
-
-            <td><a class="reg" th:href="@{editReservation/{id} (id = ${userReservation.id})}">Edytuj</a></td>
-            <td><a class="reg" th:href="@{userReservation/{reservationId} (reservationId = ${userReservation.id})}">Usuń</a>
-            </td>
-        </tr>
-        </tbody>
+            <td th:text="${userReservation.movieShow.movie.title}"></td>
+            <td th:text="${userReservation.movieShow.dateTime}"></td>
 
 
     </table>

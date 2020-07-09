@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="pl"xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<th:block th:replace="navbar :: nav"/>
+<form th:action="@{/admin/addTicket}" method="post" th:object="${ticket}">
+    <label>Enter movie</label><br>
+    <input type="text" th:field="*{name}" required maxlength="40"><br>
+    <input type="number" th:field="*{price}" required maxlength="40"><br>
+    <button type="submit" value="Add">Add</button>
+    <a class="home" th:href="@{main}">Back home</a>
+</form>
+</body>
+</html>

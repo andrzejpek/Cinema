@@ -1,14 +1,26 @@
 package com.patand.Cinema.model;
 
 import lombok.Getter;
+import lombok.RequiredArgsConstructor;
+import lombok.Setter;
 
+import javax.persistence.*;
+
+@Entity
 @Getter
-public enum Ticket {
-        Normal(25),Reduced(20),Wednesday(15);
+@Setter
+@RequiredArgsConstructor
+@Table(name = "ticket")
+public class Ticket {
 
-        private int price;
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    private Long id;
 
-    private Ticket(int price) {
-        this.price = price;
-    }
+    @Column
+    private String name;
+
+    @Column
+    private int price;
+
 }

@@ -6,6 +6,7 @@
 </head>
 <body>
 <th:block th:replace="navbar :: nav"/>
+<form th:action="@{/admin/reservationListForm}" method="get" th:object="${reservation}">
     <table id="reservation">
         <thead>
         <tr>
@@ -21,8 +22,7 @@
             <td th:text="${reservation.user.name}"></td>
             <td th:text="${reservation.user.surname}"></td>
             <td th:text="${reservation.movieShow.movie.title}"></td>
-            <td th:text="${#temporals.format(reservation.dateTime, 'MM-dd-yyyy h:mm a')}"></td>
-            <td><a class="accept" th:href="@{reservation/{reservationId} (reservationId = ${reservation.id})}">Accept</a></td>
+            <td th:text="${reservation.movieShow.dateTime}"></td>
         </tr>
         </tbody>
     </table>

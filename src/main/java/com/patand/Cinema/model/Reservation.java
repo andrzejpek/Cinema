@@ -3,10 +3,8 @@ package com.patand.Cinema.model;
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;
 import lombok.Setter;
-import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.*;
-import java.time.LocalDateTime;
 
 @Entity
 @Getter
@@ -29,10 +27,8 @@ public class Reservation {
     @Column
     private boolean status;
 
-    @Column
-    @DateTimeFormat(pattern = "MM/dd/yyyy h:mm a")
-    private LocalDateTime dateTime;
 
-    @Column
+    @ManyToOne
+    @JoinColumn(name = "ticket_id", nullable = false)
     private Ticket ticket;
 }

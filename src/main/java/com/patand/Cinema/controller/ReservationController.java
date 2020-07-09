@@ -1,11 +1,10 @@
 package com.patand.Cinema.controller;
 
 
-import com.patand.Cinema.model.MovieShow;
-import com.patand.Cinema.model.Reservation;
-import com.patand.Cinema.model.User;
+import com.patand.Cinema.model.*;
 import com.patand.Cinema.service.IMovieShowService;
 import com.patand.Cinema.service.IReservationService;
+import com.patand.Cinema.service.ITicketService;
 import com.patand.Cinema.service.IUserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -28,18 +27,26 @@ public class ReservationController {
     @Autowired
     private IReservationService reservationService;
 
+    @Autowired
+    private ITicketService iTicketService;
+
     @GetMapping(value = "/addReservation")
     public String showReservationForm( Model model){
         List<MovieShow> categories = movieShowService.findAll();
-        model.addAttribute("reservation", new Reservation());
         model.addAttribute("movieList", categories);
+        List<Ticket> tickets = iTicketService.findAll();
+        model.addAttribute("tickets",tickets);
+        model.addAttribute("reservationRequest", new ReservationRequest());
         return "reservation/reservationForm";
     }
 
     @PostMapping(value = "/addReservation")
-    public String addReservation(@ModelAttribute Reservation reservation, Principal principal){
+    public String addReservation(@ModelAttribute ReservationRequest reservationRequest, Principal principal){
         User user = getUser(principal);
-        reservationService.save(reservation, user);
+        Reservation reservation = new Reservation();
+        reservation.setTicket(iTicketService.getById(Long.valueOf(reservationRequest.getTicketId())));
+        reservation.setMovieShow(movieShowService.getById(Long.valueOf(reservationRequest.getMovieShowId())));
+        reservationService.save(reservation , user);
         return "redirect:/";
     }
 

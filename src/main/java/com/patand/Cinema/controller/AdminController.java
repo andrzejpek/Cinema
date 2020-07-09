@@ -1,12 +1,7 @@
 package com.patand.Cinema.controller;
 
-import com.patand.Cinema.model.Movie;
-import com.patand.Cinema.model.MovieShow;
-import com.patand.Cinema.model.Room;
-import com.patand.Cinema.service.IMovieService;
-import com.patand.Cinema.service.IMovieShowService;
-import com.patand.Cinema.service.IReservationService;
-import com.patand.Cinema.service.IRoomService;
+import com.patand.Cinema.model.*;
+import com.patand.Cinema.service.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
@@ -34,12 +29,21 @@ public class AdminController {
     @Autowired
     private IRoomService roomService;
 
+    @Autowired
+    private ITicketService iTicketService;
+
     @PreAuthorize("isAuthenticated() and hasAuthority('ROLE_ADMIN')")
     @GetMapping(value = "/main")
     public String showAdminPanel(Model model){
         List<Movie> categories = movieService.findAll();
         model.addAttribute("categories", categories);
         return "homePage";
+    }
+
+    @GetMapping(value = "/addTicket")
+    public String showTicket(Model model){
+        model.addAttribute("ticket",new Ticket());
+        return "addTicket";
     }
 
     @GetMapping(value = "/addMovie")
@@ -50,9 +54,11 @@ public class AdminController {
 
     @GetMapping(value = "/addMovieShow")
     public String showAddMovieShowForm(Model model){
-        List<Movie> movie = movieService.findAll();
-        model.addAttribute("movie", movie);
-        model.addAttribute("movieShow", new MovieShow());
+        List<Movie> movies = movieService.findAll();
+        model.addAttribute("movies", movies);
+        List<Room> rooms = roomService.findAll();
+        model.addAttribute("rooms", rooms);
+        model.addAttribute("movieShowRequest", new MovieShowRequest());
         return "addMovieShow";
     }
     @GetMapping(value = "/addRoom")
@@ -66,6 +72,11 @@ public class AdminController {
         roomService.add(room);
         return "redirect:/admin/addRoom";
     }
+    @PostMapping(value = "/addTicket")
+    public String addTicket(@ModelAttribute Ticket ticket){
+        iTicketService.add(ticket);
+        return "redirect:/admin/addTicket";
+    }
 
 
     @PostMapping(value = "/addMovie")
@@ -75,7 +86,11 @@ public class AdminController {
     }
 
     @PostMapping(value = "/addMovieShow")
-    public String addMovieShow(@ModelAttribute MovieShow movieShow){
+    public String addMovieShow(@ModelAttribute MovieShowRequest movieShowRequest){
+        MovieShow movieShow = new MovieShow();
+        movieShow.setDateTime(movieShowRequest.getShowDateTime());
+        movieShow.setMovie(movieService.getById(Long.valueOf(movieShowRequest.getMovieId())));
+        movieShow.setRoom(roomService.getById(Long.valueOf(movieShowRequest.getRoomId())));
         iMovieShowService.add(movieShow);
         return "redirect:/admin/main";
     }

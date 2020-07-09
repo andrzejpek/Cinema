@@ -9,4 +9,5 @@ public interface IMovieShowService {
     MovieShow findById(Long id);
     List<MovieShow> findAll();
     List<MovieShow> findAllByMovieId(Long movieId);
+    MovieShow getById(Long id);
 }
